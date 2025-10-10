@@ -68,12 +68,12 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
         SwitchBank(prevBank);
     }
 
-    private byte ReadByte(byte register)
+    public byte ReadByte(byte register)
     {
         return ReadLoop<byte>(register, ReadByteOp);
     }
 
-    private void WriteByte(byte register, byte value)
+    public void WriteByte(byte register, byte value)
     {
         WriteLoop(register, value, WriteByteOp);
     }
@@ -88,7 +88,7 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
         }
     }
 
-    private byte SwitchBank(byte bank)
+    public byte SwitchBank(byte bank)
     {
         byte previous = ReadByte(0xFF);
         WriteByte(0xFF, bank);
@@ -160,12 +160,12 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
         return WaitForStatus(Status.InputBufferFull, false);
     }
 
-    private byte ReadIOPort(Port port)
+    public byte ReadIOPort(Port port)
     {
         return _pawnModule.ReadPort((byte)port);
     }
 
-    private void WriteIOPort(Port port, byte datum)
+    public void WriteIOPort(Port port, byte datum)
     {
         _pawnModule.WritePort((byte)port, datum);
     }
@@ -182,13 +182,13 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
     private delegate bool WriteOp<in TParam>(byte register, TParam p);
 
     // see the ACPI specification chapter 12
-    private enum Port : byte
+    public enum Port : byte
     {
         Command = 0x66,
         Data = 0x62
     }
 
-    private enum Command : byte
+    public enum Command : byte
     {
         Read = 0x80, // RD_EC
         Write = 0x81, // WR_EC
@@ -197,7 +197,7 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
         Query = 0x84 // QR_EC
     }
 
-    private enum Status : byte
+    public enum Status : byte
     {
         OutputBufferFull = 0x01, // EC_OBF
         InputBufferFull = 0x02, // EC_IBF
@@ -209,7 +209,7 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
 
     #region Read/Write ops
 
-    protected bool ReadByteOp(byte register, out byte value)
+    public bool ReadByteOp(byte register, out byte value)
     {
         if (WaitWrite())
         {
@@ -231,7 +231,7 @@ public class WindowsEmbeddedControllerIO : IEmbeddedControllerIO
         return false;
     }
 
-    protected bool WriteByteOp(byte register, byte value)
+    public bool WriteByteOp(byte register, byte value)
     {
         if (WaitWrite())
         {
