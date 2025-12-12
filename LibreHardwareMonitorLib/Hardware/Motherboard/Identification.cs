@@ -52,6 +52,8 @@ internal class Identification
                 return Manufacturer.FIC;
             case var _ when name.Equals("Foxconn", StringComparison.OrdinalIgnoreCase):
                 return Manufacturer.Foxconn;
+            case var _ when name.StartsWith("Framework", StringComparison.OrdinalIgnoreCase):
+                return Manufacturer.Framework;
             case var _ when name.StartsWith("Fujitsu", StringComparison.OrdinalIgnoreCase):
                 return Manufacturer.Fujitsu;
             case var _ when name.StartsWith("Gigabyte", StringComparison.OrdinalIgnoreCase):
@@ -405,6 +407,8 @@ internal class Identification
                 return Model.TUF_X470_PLUS_GAMING;
             case var _ when name.Equals("B360M PRO-VDH (MS-7B24)", StringComparison.OrdinalIgnoreCase):
                 return Model.B360M_PRO_VDH;
+            case var _ when name.Equals("A320M-S2H-CF", StringComparison.OrdinalIgnoreCase):
+                return Model.A320M_S2H_CF;
             case var _ when name.Equals("B360M H", StringComparison.OrdinalIgnoreCase):
                 return Model.B360M_H;
             case var _ when name.Equals("B550-A PRO (MS-7C56)", StringComparison.OrdinalIgnoreCase):
@@ -466,6 +470,8 @@ internal class Identification
                 return Model.TUF_GAMING_X570_PLUS_WIFI;
             case var _ when name.Equals("TUF GAMING B550M-PLUS (WI-FI)", StringComparison.OrdinalIgnoreCase):
                 return Model.TUF_GAMING_B550M_PLUS_WIFI;
+            case var _ when name.Equals("TUF GAMING B760M-PLUS WIFI D4", StringComparison.OrdinalIgnoreCase):
+                return Model.TUF_GAMING_B760M_PLUS_WIFI_D4;
             case var _ when name.Equals("B360 AORUS GAMING 3 WIFI-CF", StringComparison.OrdinalIgnoreCase):
                 return Model.B360_AORUS_GAMING_3_WIFI_CF;
             case var _ when name.Equals("B550I AORUS PRO AX", StringComparison.OrdinalIgnoreCase):
@@ -571,6 +577,8 @@ internal class Identification
                 return Model.ROG_STRIX_X670E_E_GAMING_WIFI;
             case var _ when name.Equals("ROG STRIX X670E-F GAMING WIFI", StringComparison.OrdinalIgnoreCase):
                 return Model.ROG_STRIX_X670E_F_GAMING_WIFI;
+            case var _ when name.Equals("ROG STRIX B850-E GAMING WIFI", StringComparison.OrdinalIgnoreCase):
+                return Model.ROG_STRIX_B850_E_GAMING_WIFI;
             case var _ when name.Equals("ROG STRIX B850-I GAMING WIFI", StringComparison.OrdinalIgnoreCase):
                 return Model.ROG_STRIX_B850_I_GAMING_WIFI;
             case var _ when name.Equals("ROG STRIX X870E-E GAMING WIFI", StringComparison.OrdinalIgnoreCase):
@@ -665,12 +673,20 @@ internal class Identification
                 return Model.X11SWN_E;
             case var _ when name.Equals("PRO B840-P WIFI (MS-7E57)", StringComparison.OrdinalIgnoreCase):
                 return Model.B840P_PRO_WIFI;
+            case var _ when name.Equals("B840M GAMING PLUS WIFI6E (MS-7E77)", StringComparison.OrdinalIgnoreCase):
+                return Model.B840M_GAMING_PLUS_WIFI6E;
             case var _ when name.Equals("PRO B850-P WIFI (MS-7E56)", StringComparison.OrdinalIgnoreCase):
                 return Model.B850P_PRO_WIFI;
             case var _ when name.Equals("PRO B850-S WIFI6E (MS-7E80)", StringComparison.OrdinalIgnoreCase):
                 return Model.B850S_PRO_WIFI6E;
+            case var _ when name.Equals("PRO B850M-A WIFI (MS-7E66)", StringComparison.OrdinalIgnoreCase):
+                return Model.B850MA_PRO_WIFI;
+            case var _ when name.Equals("PRO B850M-P WIFI (MS-7E71)", StringComparison.OrdinalIgnoreCase):
+                return Model.B850MP_PRO_WIFI;
             case var _ when name.Equals("B850 GAMING PLUS WIFI (MS-7E56)", StringComparison.OrdinalIgnoreCase):
                 return Model.B850_GAMING_PLUS_WIFI;
+            case var _ when name.Equals("B850 GAMING PLUS WIFI6E (MS-7E80)", StringComparison.OrdinalIgnoreCase):
+                return Model.B850_GAMING_PLUS_WIFI6E;
             case var _ when name.Equals("B850M GAMING PLUS WIFI6E (MS-7E81)", StringComparison.OrdinalIgnoreCase):
                 return Model.B850M_GAMING_PLUS_WIFI6E;
             case var _ when name.Equals("MAG B850M MORTAR WIFI (MS-7E61)", StringComparison.OrdinalIgnoreCase):
@@ -679,8 +695,14 @@ internal class Identification
                 return Model.B850_TOMAHAWK_MAX_WIFI;
             case var _ when name.Equals("MPG B850 EDGE TI WIFI (MS-7E62)", StringComparison.OrdinalIgnoreCase):
                 return Model.B850_EDGE_TI_WIFI;
+            case var _ when name.Equals("MPG B850I EDGE TI WIFI (MS-7E79)", StringComparison.OrdinalIgnoreCase):
+                return Model.B850I_EDGE_TI_WIFI;
+            case var _ when name.Equals("B850MPOWER (MS-7E83)", StringComparison.OrdinalIgnoreCase):
+                return Model.B850MPOWER;
             case var _ when name.Equals("X870 GAMING PLUS WIFI (MS-7E47)", StringComparison.OrdinalIgnoreCase):
                 return Model.X870_GAMING_PLUS_WIFI;
+            case var _ when name.Equals("X870E GAMING PLUS WIFI (MS-7E70)", StringComparison.OrdinalIgnoreCase):
+                return Model.X870E_GAMING_PLUS_WIFI;
             case var _ when name.Equals("MAG X870 TOMAHAWK WIFI (MS-7E51)", StringComparison.OrdinalIgnoreCase):
                 return Model.X870_TOMAHAWK_WIFI;
             case var _ when name.Equals("MAG X870E TOMAHAWK WIFI (MS-7E59)", StringComparison.OrdinalIgnoreCase):
@@ -689,6 +711,8 @@ internal class Identification
                 return Model.X870E_GODLIKE;
             case var _ when name.Equals("PRO X870-P WIFI (MS-7E47)", StringComparison.OrdinalIgnoreCase):
                 return Model.X870P_PRO_WIFI;
+            case var _ when name.Equals("PRO X870E-P WIFI (MS-7E70)", StringComparison.OrdinalIgnoreCase):
+                return Model.X870EP_PRO_WIFI;
             case var _ when name.Equals("MPG X870E CARBON WIFI (MS-7E49)", StringComparison.OrdinalIgnoreCase):
                 return Model.X870E_CARBON_WIFI;
             case var _ when name.Equals("MPG X870E EDGE TI WIFI (MS-7E59)", StringComparison.OrdinalIgnoreCase):
@@ -703,6 +727,8 @@ internal class Identification
                 return Model.Z890_CARBON_WIFI;
             case var _ when name.Equals("MPG Z890 EDGE TI WIFI (MS-7E19)", StringComparison.OrdinalIgnoreCase):
                 return Model.Z890_EDGE_TI_WIFI;
+            case var _ when name.Equals("MPG Z890I EDGE TI WIFI (MS-7E33)", StringComparison.OrdinalIgnoreCase):
+                return Model.Z890I_EDGE_TI_WIFI;
             case var _ when name.Equals("PRO Z890-P WIFI (MS-7E34)", StringComparison.OrdinalIgnoreCase):
                 return Model.Z890P_PRO_WIFI;
             case var _ when name.Equals("PRO Z890-A WIFI (MS-7E32)", StringComparison.OrdinalIgnoreCase):
@@ -726,6 +752,64 @@ internal class Identification
                 return Model.PROART_B760_CREATOR_D4;
             case var _ when name.Equals("TUF GAMING B450-PLUS II", StringComparison.OrdinalIgnoreCase):
                 return Model.TUF_GAMING_B450_PLUS_II;
+            case var _ when name.Equals("FRANBMCP03", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP03;
+            case var _ when name.Equals("FRANBMCP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP06;
+            case var _ when name.Equals("FRANBMCP08", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP08;
+            case var _ when name.Equals("FRANBMCP0A", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP0A;
+            case var _ when name.Equals("FRANBMCP0B", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP0B;
+            case var _ when name.Equals("FRANBMCP0C", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANBMCP0C;
+            case var _ when name.Equals("FRANGACP04", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANGACP04;
+            case var _ when name.Equals("FRANGACP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANGACP06;
+            case var _ when name.Equals("FRANGACP08", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANGACP08;
+            case var _ when name.Equals("FRANMACP04", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMACP04;
+            case var _ when name.Equals("FRANMACP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMACP06;
+            case var _ when name.Equals("FRANMACP08", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMACP08;
+            case var _ when name.Equals("FRANMCCP04", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMCCP04;
+            case var _ when name.Equals("FRANMCCP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMCCP06;
+            case var _ when name.Equals("FRANMCCP07", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMCCP07;
+            case var _ when name.Equals("FRANMDCP05", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMDCP05;
+            case var _ when name.Equals("FRANMDCP07", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMDCP07;
+            case var _ when name.Equals("FRANMECP02", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMECP02;
+            case var _ when name.Equals("FRANMECP05", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMECP05;
+            case var _ when name.Equals("FRANMECP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMECP06;
+            case var _ when name.Equals("FRANMZCP07", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMZCP07;
+            case var _ when name.Equals("FRANMZCP09", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMZCP09;
+            case var _ when name.Equals("FRANMFCP02", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMFCP02;
+            case var _ when name.Equals("FRANMFCP06", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMFCP06;
+            case var _ when name.Equals("FRAPMACP03", StringComparison.OrdinalIgnoreCase):
+                return Model.FRAPMACP03;
+            case var _ when name.Equals("FRAPMACP05", StringComparison.OrdinalIgnoreCase):
+                return Model.FRAPMACP05;
+            case var _ when name.Equals("FRANMGCP05", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMGCP05;
+            case var _ when name.Equals("FRANMGCP07", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMGCP07;
+            case var _ when name.Equals("FRANMGCP09", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMGCP09;
             case var _ when name.Equals("Base Board Product Name", StringComparison.OrdinalIgnoreCase):
             case var _ when name.Equals("To be filled by O.E.M.", StringComparison.OrdinalIgnoreCase):
                 return Model.Unknown;

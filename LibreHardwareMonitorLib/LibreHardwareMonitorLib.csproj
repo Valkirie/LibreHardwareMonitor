@@ -37,8 +37,10 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Resources\PawnIo\IsaBridgeEC.bin" />
     <EmbeddedResource Include="Resources\PawnIo\LpcIO.bin" />
     <EmbeddedResource Include="Resources\PawnIo\LpcACPIEC.bin" />
+    <EmbeddedResource Include="Resources\PawnIo\LpcCrOSEC.bin" />
     <EmbeddedResource Include="Resources\PawnIo\IntelMSR.bin" />
     <EmbeddedResource Include="Resources\PawnIo\RyzenSMU.bin" />
     <EmbeddedResource Include="Resources\PawnIo\AMDFamily0F.bin" />
@@ -55,13 +57,13 @@
     <PackageReference Include="Mono.Posix.NETStandard" Version="1.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="DiskInfoToolkit" Version="1.0.3" />
+    <PackageReference Include="DiskInfoToolkit" Version="1.1.0" />
     <PackageReference Include="HidSharp" Version="2.6.4" />
-    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.242">
+    <PackageReference Include="Microsoft.Windows.CsWin32" Version="0.3.259">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="RAMSPDToolkit-NDD" Version="1.4.1" />
+    <PackageReference Include="RAMSPDToolkit-NDD" Version="1.4.2" />
     <PackageReference Include="System.Management" Version="10.0.0" />
     <PackageReference Include="System.Memory" Version="4.6.3" Condition="'$(TargetFramework)' == 'net472'" />
     <PackageReference Include="System.Threading.AccessControl" Version="10.0.0" />
