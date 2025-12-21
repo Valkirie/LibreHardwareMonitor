@@ -111,6 +111,10 @@ internal class Identification
     {
         switch (name)
         {
+            case var _ when name.Equals("TUF GAMING B850M-PLUS II", StringComparison.OrdinalIgnoreCase):
+                return Model.TUF_GAMING_B850M_PLUS_II;
+            case var _ when name.Equals("MPG Z390 GAMING EDGE AC (MS-7B17)", StringComparison.OrdinalIgnoreCase):
+                return Model.Z390_GAMING_EDGE_AC;
             case var _ when name.Equals("X870 AORUS ELITE WIFI7", StringComparison.OrdinalIgnoreCase):
                 return Model.X870_AORUS_ELITE_WIFI7;
             case var _ when name.Equals("X870 AORUS ELITE WIFI7 ICE", StringComparison.OrdinalIgnoreCase):
@@ -528,6 +532,8 @@ internal class Identification
                 return Model.B560I_AORUS_PRO_AX;
             case var _ when name.Equals("B650 AORUS ELITE", StringComparison.OrdinalIgnoreCase):
                 return Model.B650_AORUS_ELITE;
+            case var _ when name.Equals("B650 EAGLE AX", StringComparison.OrdinalIgnoreCase):
+                return Model.B650_EAGLE_AX;
             case var _ when name.Equals("B650 AORUS ELITE AX", StringComparison.OrdinalIgnoreCase):
                 return Model.B650_AORUS_ELITE_AX;
             case var _ when name.Equals("B650 AORUS ELITE V2", StringComparison.OrdinalIgnoreCase):
