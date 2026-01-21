@@ -655,6 +655,7 @@ internal sealed class SuperIOHardware : Hardware
                 switch (model)
                 {
                     case Model.X870E_TOMAHAWK_WIFI:
+                    case Model.X870E_TOMAHAWK_MAX_WIFI_PZ:
                     case Model.X870E_EDGE_TI_WIFI:
                         v.Add(new Voltage("+12V", 0));
                         v.Add(new Voltage("+5V", 1));
@@ -703,6 +704,7 @@ internal sealed class SuperIOHardware : Hardware
                     case Model.Z890_CARBON_WIFI:
                     case Model.Z890_TOMAHAWK_WIFI:
                     case Model.Z890_ACE:
+                    case Model.Z890_UNIFY_X:
                         v.Add(new Voltage("+12V", 0));
                         v.Add(new Voltage("+5V", 1));
                         v.Add(new Voltage("Vcore", 2));
@@ -2036,6 +2038,8 @@ internal sealed class SuperIOHardware : Hardware
                         t.Add(new Temperature("VSoC MOS", 5));
                         f.Add(new Fan("CPU Fan", 0));
                         f.Add(new Fan("System Fan", 1));
+                        c.Add(new Control("CPU Fan", 0));
+                        c.Add(new Control("System Fan", 1));
 
                         break;
 
