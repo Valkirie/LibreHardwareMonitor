@@ -9,7 +9,7 @@ using System.Diagnostics.CodeAnalysis;
 namespace LibreHardwareMonitor.Hardware.Motherboard.Lpc;
 
 [SuppressMessage("ReSharper", "InconsistentNaming")]
-internal enum Chip : ushort
+public enum Chip : ushort
 {
     Unknown = 0,
 

@@ -6,7 +6,7 @@
 
 namespace LibreHardwareMonitor.Hardware.Motherboard.Lpc;
 
-internal interface ISuperIO
+public interface ISuperIO
 {
     Chip Chip { get; }
 

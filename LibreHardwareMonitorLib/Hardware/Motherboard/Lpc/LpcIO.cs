@@ -13,7 +13,7 @@ using LibreHardwareMonitor.Hardware.Cpu;
 
 namespace LibreHardwareMonitor.Hardware.Motherboard.Lpc;
 
-internal class LpcIO
+public class LpcIO
 {
     private readonly StringBuilder _report = new();
     private readonly List<ISuperIO> _superIOs = new();
