@@ -52,6 +52,7 @@ public class PawnIo
     /// Retrieves the version information for the installed PawnIO.
     /// </summary>
     public static Version Version { get; }
+    private static Version VERSION_LAST = new(2, 1, 0, 0);
 
     /// <summary>
     /// Gets a value indicating whether the underlying handle is currently valid and open.
@@ -64,7 +65,11 @@ public class PawnIo
 
     internal static unsafe PawnIo LoadModuleFromResource(Assembly assembly, string resourceName)
     {
-        SafeFileHandle handle = PInvoke.CreateFile(@"\\?\GLOBALROOT\Device\PawnIO",
+        string lpFileName = @"\\?\GLOBALROOT\Device\PawnIO";
+        if (Version < VERSION_LAST)
+            lpFileName = @"\\.\PawnIO";
+
+        SafeFileHandle handle = PInvoke.CreateFile(lpFileName,
                                                    (uint)FileAccess.ReadWrite,
                                                    FILE_SHARE_MODE.FILE_SHARE_READ | FILE_SHARE_MODE.FILE_SHARE_WRITE,
                                                    null,
