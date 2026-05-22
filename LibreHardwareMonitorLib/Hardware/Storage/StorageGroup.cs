@@ -7,7 +7,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DiskInfoToolkit;
-using DiskInfoToolkit.Events;
+using StorageDIT = DiskInfoToolkit.Storage;
 
 namespace LibreHardwareMonitor.Hardware.Storage;
 
@@ -34,49 +34,36 @@ internal class StorageGroup : IGroup, IHardwareChanged
 
     private void AddHardware(ISettings settings)
     {
-        StorageManager.StoragesChanged -= OnStoragesChanged;
+        StorageDIT.DevicesChanged -= OnStoragesChanged;
 
-        //Reload storage devices
-        StorageManager.ReloadStorages();
+        //Get all disks
+        var disks = StorageDIT.GetDisks();
 
         //Transform storage device to hardware
-        _hardware.AddRange(StorageManager.Storages.Select(s => new StorageDevice(s, GetID(s), settings)));
+        _hardware.AddRange(disks.Select(s => new StorageDevice(s, settings)));
 
-        StorageManager.StoragesChanged += OnStoragesChanged;
+        StorageDIT.DevicesChanged += OnStoragesChanged;
     }
 
-    private void OnStoragesChanged(StoragesChangedEventArgs e)
+    private void OnStoragesChanged(object sender, StorageDevicesChangedEventArgs e)
     {
-        StorageDevice storageDevice = null;
-
-        switch (e.StorageChangeIdentifier)
+        foreach (var added in e.Added)
         {
-            case StorageChangeIdentifier.Added:
-                storageDevice = new StorageDevice(e.Storage, GetID(e.Storage), _settings);
+            var storageDevice = new StorageDevice(added, _settings);
 
-                _hardware.Add(storageDevice);
-                HardwareAdded?.Invoke(storageDevice);
-                break;
-            case StorageChangeIdentifier.Removed:
-                storageDevice = _hardware.Find(sd => sd.Storage == e.Storage);
-
-                if (storageDevice != null)
-                {
-                    _hardware.Remove(storageDevice);
-                    HardwareRemoved?.Invoke(storageDevice);
-                }
-                break;
+            _hardware.Add(storageDevice);
+            HardwareAdded?.Invoke(storageDevice);
         }
-    }
 
-    private string GetID(DiskInfoToolkit.Storage storage)
-    {
-        if (storage.IsNVMe)
-            return "nvme";
-        else if (storage.IsSSD)
-            return "ssd";
-        else
-            return "hdd";
+        foreach (var removed in e.Removed)
+        {
+            var storageDevice = _hardware.Find(sd => sd.Storage == removed);
+            if (storageDevice != null)
+            {
+                _hardware.Remove(storageDevice);
+                HardwareRemoved?.Invoke(storageDevice);
+            }
+        }
     }
 
     public void Close() { }

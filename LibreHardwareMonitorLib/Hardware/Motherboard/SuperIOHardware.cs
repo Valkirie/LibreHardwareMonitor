@@ -3569,6 +3569,37 @@ internal sealed class SuperIOHardware : Hardware
 
                         break;
 
+                    case Model.B550M_Pro4: //NCT6796D-R
+                        v.Add(new Voltage("Vcore", 0, 10, 10));
+                        v.Add(new Voltage("+5V", 1, 2, 1));
+                        v.Add(new Voltage("AVCC", 2, 10, 10));
+                        v.Add(new Voltage("+3.3V", 3, 10, 10));
+                        v.Add(new Voltage("+12V", 4, 56, 10));
+                        v.Add(new Voltage("SoC", 5, 0, 1));
+                        v.Add(new Voltage("DIMM", 6, 0, 1, 0));
+                        v.Add(new Voltage("+3V Standby", 7, 10, 10));
+                        v.Add(new Voltage("CMOS Battery", 8, 34, 34));
+                        v.Add(new Voltage("VPPM", 11, 3, 1));
+                        v.Add(new Voltage("+1.8V", 14, 1, 1));
+
+                        t.Add(new Temperature("Motherboard", 2));
+                        t.Add(new Temperature("CPU", 8));
+
+                        f.Add(new Fan("Chassis #3", 0));
+                        c.Add(new Control("Chassis #3", 0));
+                        f.Add(new Fan("CPU1", 1));
+                        c.Add(new Control("CPU1", 1));
+                        f.Add(new Fan("CPU Pump", 2));
+                        c.Add(new Control("CPU Pump", 2));
+                        f.Add(new Fan("Chassis #1", 3));
+                        c.Add(new Control("Chassis #1", 3));
+                        f.Add(new Fan("Chassis #2", 4));
+                        c.Add(new Control("Chassis #2", 4));
+                        f.Add(new Fan("Chassis #4", 6));
+                        c.Add(new Control("Chassis #4", 6));
+
+                        break;
+
                     case Model.X399_Phantom_Gaming_6: //NCT6779D
                         v.Add(new Voltage("Vcore", 0, 10, 10));
                         v.Add(new Voltage("Chipset 1.05V", 1, 0, 1));
@@ -6099,22 +6130,21 @@ internal sealed class SuperIOHardware : Hardware
             {
                 if (_motherboard.Model == Model.X570_MS7C35) // Add Temp Value for CPU MOS TEMPERATURE & PCH TEMPERATURE
                 {
-                    float voltage;
+                    float? voltage = null;
 
                     if (sensor.Index == 24)
                     {
-                        voltage = (float)_readVoltage(6);
+                        voltage = _readVoltage(6);
                     }
                     else if (sensor.Index == 25)
                     {
-                        voltage = (float)_readVoltage(11);
-                    }
-                    else
-                    {
-                        voltage = 0;
+                        voltage = _readVoltage(11);
                     }
 
-                    double R = (10000.0 * voltage / (2.048 - 1.0));            //Convert voltage measured to resistance value
+                    if (!voltage.HasValue || voltage.Value <= 0)
+                        continue;
+
+                    double R = (10000.0 * voltage.Value / (2.048 - 1.0));            //Convert voltage measured to resistance value
                     double T = ((298.15 * 3435.0) / ((298.15 * Math.Log(R / 10000.0)) + 3435.0));  // Use R value in steinhart and hart equation, calculate temperature value in kelvin
                     float Tc = (float)(T - 273.15);                            // Converting kelvin to celsius
 

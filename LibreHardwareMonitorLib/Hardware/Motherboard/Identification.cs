@@ -141,6 +141,8 @@ internal class Identification
                 return Model.B450M_Pro4;
             case var _ when name.Equals("B450M Pro4 R2.0", StringComparison.OrdinalIgnoreCase):
                 return Model.B450M_Pro4_R2_0;
+            case var _ when name.Equals("B550M Pro4", StringComparison.OrdinalIgnoreCase):
+                return Model.B550M_Pro4;
             case var _ when name.Equals("Fatal1ty AB350 Gaming K4", StringComparison.OrdinalIgnoreCase):
                 return Model.Fatal1ty_AB350_Gaming_K4;
             case var _ when name.Equals("AB350M-HDV", StringComparison.OrdinalIgnoreCase):
@@ -804,6 +806,8 @@ internal class Identification
                 return Model.FRANMACP06;
             case var _ when name.Equals("FRANMACP08", StringComparison.OrdinalIgnoreCase):
                 return Model.FRANMACP08;
+            case var _ when name.Equals("FRANMBCP04", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMBCP04;
             case var _ when name.Equals("FRANMCCP04", StringComparison.OrdinalIgnoreCase):
                 return Model.FRANMCCP04;
             case var _ when name.Equals("FRANMCCP06", StringComparison.OrdinalIgnoreCase):
@@ -826,6 +830,8 @@ internal class Identification
                 return Model.FRANMZCP09;
             case var _ when name.Equals("FRANMFCP02", StringComparison.OrdinalIgnoreCase):
                 return Model.FRANMFCP02;
+            case var _ when name.Equals("FRANMFCP04", StringComparison.OrdinalIgnoreCase):
+                return Model.FRANMFCP04;
             case var _ when name.Equals("FRANMFCP06", StringComparison.OrdinalIgnoreCase):
                 return Model.FRANMFCP06;
             case var _ when name.Equals("FRAPMACP03", StringComparison.OrdinalIgnoreCase):
